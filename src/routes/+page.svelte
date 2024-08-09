@@ -2,6 +2,8 @@
   import Tabs from '$lib/components/Tabs.svelte';
   import type { Item } from '$lib/types';
 
+  export const ssr = false;
+
   $: state = {
     hat: 0,
     shirt: 0,
@@ -79,13 +81,13 @@
     <Tabs bind:items />
   </div>
   <div class="totals">
-    Total {total}
+    Total <span>{total}</span>
   </div>
 </div>
 
 <style>
   .banner {
-    background: #4eb6ff url("LOGO.webp") no-repeat center 20px;
+    background: #4eb6ff url("/LOGO.webp") no-repeat center 20px;
     background-size: 300px;
     min-height: 260px;
     display: flex;
@@ -102,7 +104,7 @@
   }
 
   .content {
-    min-height: calc(100vh - 330px - 40px);
+    min-height: calc(100vh - 330px - 100px);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -117,7 +119,20 @@
     justify-content: flex-end;
     align-items: center;
     color: white;
-    padding: 0 20px;
+    padding: 0px 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.2rem;
+  }
+
+  .totals span {
+    margin-left: 20px;
+  }
+
+  .developed {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: #09242c;
+    padding: 0 10px 10px;
   }
 </style>

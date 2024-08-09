@@ -2,13 +2,7 @@
   import type { Calc } from "$lib/types";
   import { createEventDispatcher, SvelteComponent } from "svelte";
 
-  export let totals: Calc = {
-    common: 0,
-    rare: 0,
-    epic: 0,
-    legendary: 0,
-    ultimate: 0,
-  };
+  export let totals: Calc;
 
   const multipliers = {
     common: 25,
