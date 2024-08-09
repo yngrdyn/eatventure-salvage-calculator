@@ -51,7 +51,7 @@
       <input type="number" value={totals?.legendary} on:input={(e) => handleInput(e.target.value, 'legendary')}/>
     </li>
     <li class="ultimateBP">
-      <img src="ultimate.png" />
+      <img src="ultimateBP.png" />
       <input type="number" value={totals?.ultimateBP} on:input={(e) => handleInput(e.target.value, 'ultimateBP')}/>
     </li>
     <li class="ultimate">
