@@ -10,7 +10,7 @@ return {
 	assets: new Set(["LOGO.webp","common.png","commonEgg.png","eatventure-banner.png","epic.png","epicEgg.png","favicon.png","hand.png","hat.png","legendary.png","legendaryBP.png","legendaryEgg.png","mythic.png","mythicBP.png","necklace.png","pet.png","rare.png","rareEgg.png","ring.png","shirt.png","ultimate.png","ultimateBP.png","ultimateEgg.png"]),
 	mimeTypes: {".webp":"image/webp",".png":"image/png"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.DRpcPpym.js","app":"_app/immutable/entry/app.DaFy5uw_.js","imports":["_app/immutable/entry/start.DRpcPpym.js","_app/immutable/chunks/entry.GWP5bpTq.js","_app/immutable/chunks/scheduler.Bn3fAjyU.js","_app/immutable/entry/app.DaFy5uw_.js","_app/immutable/chunks/scheduler.Bn3fAjyU.js","_app/immutable/chunks/index.DQrfLpgj.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
+		client: {"start":"_app/immutable/entry/start.BAD0g80c.js","app":"_app/immutable/entry/app._9MTFoj5.js","imports":["_app/immutable/entry/start.BAD0g80c.js","_app/immutable/chunks/entry.SoqCXHmv.js","_app/immutable/chunks/scheduler.Bn3fAjyU.js","_app/immutable/entry/app._9MTFoj5.js","_app/immutable/chunks/scheduler.Bn3fAjyU.js","_app/immutable/chunks/index.DQrfLpgj.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js')),
