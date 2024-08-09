@@ -3,89 +3,69 @@
   import type { Item } from '$lib/types';
 
   $: state = {
-    hat: { totals: { common: 0, rare: 0, epic: 0, legendary: 0, ultimate: 0, mythic: 0 }, result: 0 },
-    shirt: { totals: { common: 0, rare: 0, epic: 0, legendary: 0, ultimate: 0, mythic: 0 }, result: 0 },
-    hand: { totals: { common: 0, rare: 0, epic: 0, legendary: 0, ultimate: 0, mythic: 0 }, result: 0 },
-    ring: { totals: { common: 0, rare: 0, epic: 0, legendary: 0, ultimate: 0, mythic: 0 }, result: 0 },
-    necklace: { totals: { common: 0, rare: 0, epic: 0, legendary: 0, ultimate: 0, mythic: 0 }, result: 0 },
-    pet: { totals: { common: 0, rare: 0, epic: 0, legendary: 0, ultimate: 0, mythic: 0 }, result: 0 },
+    hat: 0,
+    shirt: 0,
+    hand: 0,
+    ring: 0,
+    necklace: 0,
+    pet: 0,
   }
 
-  const callbacks = {
-    hat: (e: CustomEvent<any>) => {
-      state.hat = e.detail;
-      console.log(e);
-      console.log(state);
-    },
-    shirt: (e: CustomEvent<any>) => {
-      state.shirt = e.detail;
-      console.log(e);
-      console.log(state);
-    },
-    hand: (e: CustomEvent<any>) => {
-      state.hand = e.detail;
-    },
-    ring: (e: CustomEvent<any>) => {
-      state.ring = e.detail;
-    },
-    necklace: (e: CustomEvent<any>) => {
-      state.necklace = e.detail;
-    },
-    pet: (e: CustomEvent<any>) => {
-      state.pet = e.detail;
-    },
-  }
+  $: total = Object.keys(state).reduce((acc, current) => acc + state[current], 0)
 
-  $: total = Object.keys(state).reduce((acc, current) => acc + state[current].result, 0)
+  const callback = (e: CustomEvent<any>, name: keyof typeof state) => {
+    state[name] = e.detail;
+    console.log(e);
+  }
 
   // List of tab items with labels, values and assigned components
-  const items: Item[] = [
+  let items: Item[] = [
     {
       label: "Hat",
       value: 1,
       icon: 'hat.png',
-      totals: state?.hat.totals,
-      callback: callbacks.hat,
+      totals: { common: 0, rare: 0, epic: 0, legendary: 0, ultimate: 0, mythic: 0, legendaryBP: 0, ultimateBP: 0, mythicBP: 0 },
+      callback: (e) => callback(e, 'hat'),
       type: 'normal',
     },
     {
       label: "Shirt",
       value: 2,
       icon: 'shirt.png',
-      totals: state?.shirt.totals,
-      callback: callbacks.shirt,
+      totals: { common: 0, rare: 0, epic: 0, legendary: 0, ultimate: 0, mythic: 0, legendaryBP: 0, ultimateBP: 0, mythicBP: 0 },
+      callback: (e) => callback(e, 'shirt'),
       type: 'normal',
     },
     {
       label: "Hand",
       value: 3,
       icon: 'hand.png',
-      totals: state?.hand.totals,
-      callback: callbacks.hand,
+      totals: { common: 0, rare: 0, epic: 0, legendary: 0, ultimate: 0, mythic: 0, legendaryBP: 0, ultimateBP: 0, mythicBP: 0 },
+      callback: (e) => callback(e, 'hand'),
       type: 'normal',
     },
     {
       label: "Ring",
       value: 4,
       icon: 'ring.png',
-      totals: state?.ring.totals,
-      callback: callbacks.ring,
+      totals: { common: 0, rare: 0, epic: 0, legendary: 0, ultimate: 0, mythic: 0, legendaryBP: 0, ultimateBP: 0, mythicBP: 0 },
+      callback: (e) => callback(e, 'ring'),
       type: 'normal',
     },
     {
       label: "Necklace",
       value: 5,
       icon: 'necklace.png',
-      totals: state?.necklace.totals,
-      callback: callbacks.necklace,
+      totals: { common: 0, rare: 0, epic: 0, legendary: 0, ultimate: 0, mythic: 0, legendaryBP: 0, ultimateBP: 0, mythicBP: 0 },
+      callback: (e) => callback(e, 'necklace'),
       type: 'normal',
     },
     {
       label: "Pet",
       value: 6,
       icon: 'pet.png',
-      totals: state?.pet.totals,
-      callback: callbacks.pet,
+      totals: { common: 0, rare: 0, epic: 0, legendary: 0, ultimate: 0 },
+      callback: (e) => callback(e, 'pet'),
       type: 'pet',
     }
   ];
@@ -96,7 +76,7 @@
     <h1>Salvage XP Calculator</h1>
   </div>
   <div class="content">
-    <Tabs {items} />
+    <Tabs bind:items />
   </div>
   <div class="totals">
     Total {total}

@@ -19,12 +19,11 @@
   export let result = 0;
 
   const dispatch = createEventDispatcher();
-  const input = () => dispatch('input', { totals, result});
+  const input = () => dispatch('input', result);
 
   function handleInput(value: number, name: string) {
     totals = { ...totals, [name]: value };
     result = Object.keys(totals).reduce((acc, current) => acc + (totals[current] * multipliers[current]), 0);
-    console.log({ totals, result });
     input();
   }
 </script>
@@ -35,38 +34,38 @@
       <img src="common.png" />
       <input type="number" value={totals?.common} on:input={(e) => handleInput(e.target.value, 'common')}/>
     </li>
-    <!-- <li class="rare">
+    <li class="rare">
       <img src="rare.png" />
-      <input type="number" bind:value={totals?.rare} on:input={handleInput}/>
+      <input type="number" value={totals?.rare} on:input={(e) => handleInput(e.target.value, 'rare')}/>
     </li>
     <li class="epic">
       <img src="epic.png" />
-      <input type="number" bind:value={totals?.epic} on:input={handleInput}/>
+      <input type="number" value={totals?.epic} on:input={(e) => handleInput(e.target.value, 'epic')}/>
     </li>
     <li class="legendaryBP">
       <img src="legendaryBP.png" />
-      <input type="number" bind:value={totals?.legendaryBP} on:input={handleInput}/>
+      <input type="number" value={totals?.legendaryBP} on:input={(e) => handleInput(e.target.value, 'legendaryBP')}/>
     </li>
     <li class="legendary">
       <img src="legendary.png" />
-      <input type="number" bind:value={totals?.legendary} on:input={handleInput}/>
+      <input type="number" value={totals?.legendary} on:input={(e) => handleInput(e.target.value, 'legendary')}/>
     </li>
     <li class="ultimateBP">
       <img src="ultimate.png" />
-      <input type="number" bind:value={totals?.ultimateBP} on:input={handleInput}/>
+      <input type="number" value={totals?.ultimateBP} on:input={(e) => handleInput(e.target.value, 'ultimateBP')}/>
     </li>
     <li class="ultimate">
       <img src="ultimate.png" />
-      <input type="number" bind:value={totals?.ultimate} on:input={handleInput}/>
+      <input type="number" value={totals?.ultimate} on:input={(e) => handleInput(e.target.value, 'ultimate')}/>
     </li>
     <li class="mythic">
       <img src="mythic.png" />
-      <input type="number" bind:value={totals?.mythic} on:input={handleInput}/>
+      <input type="number" value={totals?.mythic} on:input={(e) => handleInput(e.target.value, 'mythic')}/>
     </li>
     <li class="mythicBP">
       <img src="mythicBP.png" />
-      <input type="number" bind:value={totals?.mythicBP} on:input={handleInput}/>
-    </li> -->
+      <input type="number" value={totals?.mythicBP} on:input={(e) => handleInput(e.target.value, 'mythicBP')}/>
+    </li>
   </ul>
 </div>
 <style>

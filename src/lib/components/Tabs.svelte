@@ -6,14 +6,7 @@
   export let items: Item[] = [];
   export let activeTabValue = 1;
 
-  console.log(items);
-
   const handleClick = (tabValue: number) => () => (activeTabValue = tabValue);
-
-  function updateItem(callback, name) {
-    console.log(name);
-    callback();
-  }
 </script>
 <div>
 <ul>
@@ -27,9 +20,9 @@
     {#if activeTabValue == item.value}
     <div class="box">
       {#if item.type === 'normal'}
-        <Calculator totals={item.totals} on:input={() => updateItem(item.callback, 'hat')}/>
+        <Calculator bind:totals={item.totals} on:input={item.callback}/>
       {:else}
-        <PetCalculator on:input={item.callback}/>
+        <PetCalculator bind:totals={item.totals} on:input={item.callback}/>
       {/if}
     </div>
     {/if}

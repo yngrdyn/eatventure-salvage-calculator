@@ -21,11 +21,11 @@
   export let result = 0;
 
   const dispatch = createEventDispatcher();
-  const input = () => dispatch('input', { totals, result});
+  const input = () => dispatch('input', result);
 
-  function handleInput() {
+  function handleInput(value: number, name: string) {
+    totals = { ...totals, [name]: value };
     result = Object.keys(totals).reduce((acc, current) => acc + (totals[current] * multipliers[current]), 0);
-    console.log(result);
     input();
   }
 </script>
@@ -34,23 +34,23 @@
   <ul>
     <li class="common">
       <img src="commonEgg.png" />
-      <input type="number" bind:value={totals.common} on:input={handleInput}/>
+      <input type="number" value={totals.common} on:input={(e) => handleInput(e.target.value, 'common')}/>
     </li>
     <li class="rare">
       <img src="rareEgg.png" />
-      <input type="number" bind:value={totals.rare} on:input={handleInput}/>
+      <input type="number" value={totals.rare} on:input={(e) => handleInput(e.target.value, 'rare')}/>
     </li>
     <li class="epic">
       <img src="epicEgg.png" />
-      <input type="number" bind:value={totals.epic} on:input={handleInput}/>
+      <input type="number" value={totals.epic} on:input={(e) => handleInput(e.target.value, 'epic')}/>
     </li>
     <li class="legendary">
       <img src="legendaryEgg.png" />
-      <input type="number" bind:value={totals.legendary} on:input={handleInput}/>
+      <input type="number" value={totals.legendary} on:input={(e) => handleInput(e.target.value, 'legendary')}/>
     </li>
     <li class="ultimate">
       <img src="ultimateEgg.png" />
-      <input type="number" bind:value={totals.ultimate} on:input={handleInput}/>
+      <input type="number" value={totals.ultimate} on:input={(e) => handleInput(e.target.value, 'ultimate')}/>
     </li>
   </ul>
 </div>
