@@ -2,7 +2,35 @@
   import Tabs from '$lib/components/Tabs.svelte';
   import type { Item } from '$lib/types';
 
-  export const ssr = false;
+  const defaults = {
+    normal: {
+      common: 0,
+      rare: 0,
+      epic: 0,
+      legendary: 0,
+      ultimate: 0,
+      mythic: 0,
+      legendaryBP: 0,
+      ultimateBP: 0,
+      mythicBP: 0,
+    },
+    pet: {
+      common: 0,
+      rare: 0,
+      epic: 0,
+      legendary: 0,
+      ultimate: 0,
+    }
+  }
+
+  const generateItem = (value: number, id: string, type: 'normal' | 'pet', callback: (e: CustomEvent<any>, id: string) => void) => ({
+    label: `${id.charAt(0).toUpperCase()}${id.slice(1)}`,
+    value,
+    icon: `${id}.png`,
+    totals: defaults[type],
+    callback: (e: CustomEvent<any>) => callback(e, id),
+    type,
+  });
 
   $: state = {
     hat: 0,
@@ -13,63 +41,20 @@
     pet: 0,
   }
 
-  $: total = Object.keys(state).reduce((acc, current) => acc + state[current], 0)
+  $: total = Object.keys(state).reduce((acc, current) => acc + state[current as keyof typeof state], 0)
 
-  const callback = (e: CustomEvent<any>, name: keyof typeof state) => {
-    state[name] = e.detail;
-    console.log(e);
+  const callback = (e: CustomEvent<any>, name: string) => {
+    state[name as keyof typeof state] = e.detail;
   }
 
   // List of tab items with labels, values and assigned components
   let items: Item[] = [
-    {
-      label: "Hat",
-      value: 1,
-      icon: 'hat.png',
-      totals: { common: 0, rare: 0, epic: 0, legendary: 0, ultimate: 0, mythic: 0, legendaryBP: 0, ultimateBP: 0, mythicBP: 0 },
-      callback: (e) => callback(e, 'hat'),
-      type: 'normal',
-    },
-    {
-      label: "Shirt",
-      value: 2,
-      icon: 'shirt.png',
-      totals: { common: 0, rare: 0, epic: 0, legendary: 0, ultimate: 0, mythic: 0, legendaryBP: 0, ultimateBP: 0, mythicBP: 0 },
-      callback: (e) => callback(e, 'shirt'),
-      type: 'normal',
-    },
-    {
-      label: "Hand",
-      value: 3,
-      icon: 'hand.png',
-      totals: { common: 0, rare: 0, epic: 0, legendary: 0, ultimate: 0, mythic: 0, legendaryBP: 0, ultimateBP: 0, mythicBP: 0 },
-      callback: (e) => callback(e, 'hand'),
-      type: 'normal',
-    },
-    {
-      label: "Ring",
-      value: 4,
-      icon: 'ring.png',
-      totals: { common: 0, rare: 0, epic: 0, legendary: 0, ultimate: 0, mythic: 0, legendaryBP: 0, ultimateBP: 0, mythicBP: 0 },
-      callback: (e) => callback(e, 'ring'),
-      type: 'normal',
-    },
-    {
-      label: "Necklace",
-      value: 5,
-      icon: 'necklace.png',
-      totals: { common: 0, rare: 0, epic: 0, legendary: 0, ultimate: 0, mythic: 0, legendaryBP: 0, ultimateBP: 0, mythicBP: 0 },
-      callback: (e) => callback(e, 'necklace'),
-      type: 'normal',
-    },
-    {
-      label: "Pet",
-      value: 6,
-      icon: 'pet.png',
-      totals: { common: 0, rare: 0, epic: 0, legendary: 0, ultimate: 0 },
-      callback: (e) => callback(e, 'pet'),
-      type: 'pet',
-    }
+    generateItem(1, 'hat', 'normal', callback),
+    generateItem(2, 'shirt', 'normal', callback),
+    generateItem(3, 'hand', 'normal', callback),
+    generateItem(4, 'ring', 'normal', callback),
+    generateItem(5, 'necklace', 'normal', callback),
+    generateItem(6, 'pet', 'pet', callback),
   ];
 </script>
 
@@ -126,13 +111,5 @@
 
   .totals span {
     margin-left: 20px;
-  }
-
-  .developed {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    background: #09242c;
-    padding: 0 10px 10px;
   }
 </style>

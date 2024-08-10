@@ -12,7 +12,8 @@
 <ul>
   {#each items as item}
     <li class={activeTabValue === item.value ? 'active' : ''}>
-      <span on:click={handleClick(item.value)} style={`background-image: url("${item.icon}")`}></span>
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <span tabindex={item.value} role="button" aria-pressed="false" on:click={handleClick(item.value)} style={`background-image: url("${item.icon}")`}></span>
     </li>
   {/each}
   </ul>
