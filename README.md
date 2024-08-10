@@ -1,7 +1,7 @@
 <img align="left" width="80" height="80" src="https://github.com/yngrdyn/eatventure-salvage-calculator/blob/main/static/favicon.png" alt="Calculate your xp for next season">
 
-# eatventure Salvage Calculator
-Salvage calculator is *The App* if you want to know how much xp you have saved towards next season. Checkout the **[Live version](https://yngrdyn.github.io/eatventure-salvage-calculator/)**
+# eatventure Savage Calculator
+Savage calculator is *The App* if you want to know how much xp you have saved towards next season. Checkout the **[Live version](https://yngrdyn.github.io/eatventure-salvage-calculator/)**
 
 <img src="https://github.com/yngrdyn/eatventure-salvage-calculator/blob/main/static/app.png?raw=true">
 

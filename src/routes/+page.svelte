@@ -60,7 +60,7 @@
 
 <div class="app">
   <div class="banner">
-    <h1>Salvage XP Calculator</h1>
+    <h1>Savage XP Calculator</h1>
   </div>
   <div class="content">
     <Tabs bind:items />
