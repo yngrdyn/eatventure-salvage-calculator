@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { Item } from "$lib/types";
   import Calculator from "./Calculator.svelte";
-  import PetCalculator from "./PetCalculator.svelte";
 
   export let items: Item[] = [];
   export let activeTabValue = 1;
@@ -20,11 +19,7 @@
   {#each items as item}
     {#if activeTabValue == item.value}
     <div class="box">
-      {#if item.type === 'normal'}
-        <Calculator bind:totals={item.totals} on:input={item.callback}/>
-      {:else}
-        <PetCalculator bind:totals={item.totals} on:input={item.callback}/>
-      {/if}
+      <Calculator bind:totals={item.totals} bind:type={item.type} bind:callback={item.callback}/>
     </div>
     {/if}
   {/each}
